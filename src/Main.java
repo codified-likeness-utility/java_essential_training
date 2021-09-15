@@ -1,29 +1,28 @@
 import org.w3c.dom.ls.LSOutput;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public class Main {
 
     // The main method must have only one parameter of an array of Strings
     public static void main(String[] args) {
-        int result = 10 + 12;
-        String answer = "The answer is " + result;
-        System.out.println(answer);
+        var doubleValue = 10_000_000.53;
+        var numF = NumberFormat.getNumberInstance();
+        System.out.println("Number: " + numF.format(doubleValue));
 
-        String howMany = 20 + " things";
-        System.out.println(howMany);
+        var intF = NumberFormat.getIntegerInstance();
+        System.out.println("Number: " + intF.format(doubleValue));
 
-        var result2 = 10 + 20;
+        intF.setGroupingUsed(false);
+        System.out.println("Number: " + intF.format(doubleValue));
 
-        int intValue = 42;
-        var fromInt = Integer.toString(intValue);
-        System.out.println(fromInt);
+        var locale = new Locale("en", "us");
+        var localeFormatter = NumberFormat.getNumberInstance(locale);
+        System.out.println("Number: " + localeFormatter.format(doubleValue));
 
-        boolean boolValue = true;
-        var fromBool = Boolean.toString(boolValue);
-        System.out.println(fromBool);
-
-        long longValue = 10_000_000;
-        var fromLong = Long.toString(longValue);
-        System.out.println(fromLong);
+        var currencyFormatter = NumberFormat.getCurrencyInstance(locale);
+        System.out.println(currencyFormatter.format(doubleValue));
     }
 }
 
