@@ -7,22 +7,17 @@ public class Main {
 
     // The main method must have only one parameter of an array of Strings
     public static void main(String[] args) {
-        var doubleValue = 10_000_000.53;
-        var numF = NumberFormat.getNumberInstance();
-        System.out.println("Number: " + numF.format(doubleValue));
+        var item = "Shirt";
+        var size = 'M';
+        var price = 14.99;
+        var color = "Red";
 
-        var intF = NumberFormat.getIntegerInstance();
-        System.out.println("Number: " + intF.format(doubleValue));
-
-        intF.setGroupingUsed(false);
-        System.out.println("Number: " + intF.format(doubleValue));
-
-        var locale = new Locale("en", "us");
-        var localeFormatter = NumberFormat.getNumberInstance(locale);
-        System.out.println("Number: " + localeFormatter.format(doubleValue));
-
-        var currencyFormatter = NumberFormat.getCurrencyInstance(locale);
-        System.out.println(currencyFormatter.format(doubleValue));
+        // Format string that determines where and how arguments will be used
+        var template = "Clothing item: %s, size %s, color %s, $%.2f";
+        // Format string 'template' is passed in as the 1st arg and the following args are passed
+        // in the order that they are specified within the format string above
+        var itemString = String.format(template, item, size, color, price);
+        System.out.println(itemString);
     }
 }
 
