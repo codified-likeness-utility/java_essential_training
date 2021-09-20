@@ -8,44 +8,39 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        String[] months = {
-                "January",
-                "February",
-                "March",
-                "April",
-                "may",
-                "June",
-                "July",
-                "August",
-                "September",
-                "October",
-                "November",
-                "December"
-        };
+        Scanner sc = new Scanner(System.in);
+        var i1 = getInput(sc, "Enter value 1: ");
+        var i2 = getInput(sc, "Enter value 2: ");
 
-        // Iterative loop
-//        for (int i = 0; i < months.length; i++) {
-//            System.out.println(months[i]);
-//        }
+        double result = addValues(i1, i2);
+        System.out.println("The sum is " + result);
 
-        // forEach loop
-//        for (String month : months) {
-//            System.out.println(month);
-//        }
+        double resultOfFour = addValues(i1, i2, i1, i2);
+        System.out.println(" The sum of 4 is " + resultOfFour);
 
-        // While loop
-//        var whileCounter = 0;
-//        while (whileCounter < months.length) {
-//            System.out.println(months[whileCounter]);
-//            whileCounter++;
-//        }
+        double resultOfMultiple = addValues(i1, i2, i1, i2, i1, i2);
+        System.out.println(" The sum of multiple is " + resultOfMultiple);
+    }
 
-        // do loop
-        var doCounter = 0;
-        do {
-            System.out.println(months[doCounter]);
-            doCounter++;
-        } while (doCounter < months.length);
+    private static int getInput(Scanner sc, String prompt) {
+        System.out.println(prompt);
+        return sc.nextInt();
+    }
+
+    private static double addValues(int i1, int i2) {
+        return i1 + i2;
+    }
+    private static double addValues(int i1, int i2, int i3, int i4) {
+        return i1 + i2 + i3 + i4;
+    }
+
+    private static double addValues(int... values) {
+        int result = 0;
+        for (var value : values
+             ) {
+            result += value;
+        }
+        return result;
     }
 }
 
