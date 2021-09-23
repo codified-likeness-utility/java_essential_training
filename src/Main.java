@@ -1,25 +1,41 @@
+import jdk.jshell.execution.JdiDefaultExecutionControl;
 import org.w3c.dom.ls.LSOutput;
 
 import java.text.NumberFormat;
 import java.time.LocalDateTime;
+import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        var i1 = getInput(sc, "Enter value 1: ");
-        var i2 = getInput(sc, "Enter value 2: ");
 
-        double result = addValues(i1, i2);
-        System.out.println("The sum is " + result);
+        try {
+            Scanner sc = new Scanner(System.in);
+            var i1 = getInput(sc, "Enter value 1: ");
+            var i2 = getInput(sc, "Enter value 2: ");
 
-        double resultOfFour = addValues(i1, i2, i1, i2);
-        System.out.println(" The sum of 4 is " + resultOfFour);
+            System.out.println("Select an mathematical operation (+ - * /): ");
+            Scanner op = new Scanner(System.in);
+            var operation = op.next();
 
-        double resultOfMultiple = addValues(i1, i2, i1, i2, i1, i2);
-        System.out.println(" The sum of multiple is " + resultOfMultiple);
+            if (operation.equals("+")) {
+                System.out.println("The answer is: " + (i1 + i2));
+            } else if (operation.equals("-")) {
+                System.out.println("The answer is: " + (i1 - i2));
+            } else if (operation.equals("*")) {
+                System.out.println("The answer is: " + (i1 * i2));
+            } else {
+                System.out.println("The answer is: " + (i1 / i2));
+            }
+
+        } catch (InputMismatchException e) {
+            System.out.println("Could not format as a a number...");
+        }
+
+
+
     }
 
     private static int getInput(Scanner sc, String prompt) {
@@ -27,21 +43,6 @@ public class Main {
         return sc.nextInt();
     }
 
-    private static double addValues(int i1, int i2) {
-        return i1 + i2;
-    }
-    private static double addValues(int i1, int i2, int i3, int i4) {
-        return i1 + i2 + i3 + i4;
-    }
-
-    private static double addValues(int... values) {
-        int result = 0;
-        for (var value : values
-             ) {
-            result += value;
-        }
-        return result;
-    }
 }
 
 
